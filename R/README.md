@@ -6,9 +6,9 @@
 
 2.  [*B_download_environmentals.R*](B_download_environmentals.R) - download air temperature, and sea surface temperature (SST) data from ERA5 (https://doi.org/10.24381/cds.4991cf48).
 
-3.  [*C_sst_extract.R*](C_sst_extract.R) - using OISST data (https://downloads.psl.noaa.gov/Datasets/noaa.oisst.v2.highres/), extracts mean and variation in sea surface temperature for a given 'core area' polygon over the date range of bird data.
+3.  [*C_sst_extract.R*](C_sst_extract.R) - using ERA5 data (https://doi.org/10.24381/cds.4991cf48), extracts mean and variation in sea surface temperature for a given 'core area' polygon over the date range of bird data.
 
-4.  [*D_airtemp_extract.R*](D_airtemp_extract.R) - using ERA5 data, extracts mean air temperature at the colony coordinates over the date range of bird data.
+4.  [*D_airtemp_extract.R*](D_airtemp_extract.R) - using ERA5 data (https://doi.org/10.24381/cds.4991cf48), extracts mean air temperature at the colony coordinates over the date range of bird data.
 
 5.  [*E_gls_classification.R*](E_gls_classification.R) - from light and immersion logger data, estimate the proportion of time birds spend performing certain behaviours (in flight, foraging, resting, at colony).
 
