@@ -1,3 +1,27 @@
+#' Response Diversity Estimation (Energetic)
+#'
+#' From a measurement error brmsfit error generalised additive model, estimate the first derivative for an environmental smooth followed by its response dissimilarity, response divergence and response imbalance. 
+#'
+#' @param model brmsfit. A generalised additive model with varying smooth by \code{unit} AND measurement error term.
+#' @param newdata dataframe. dataframe of desired values to make model predictions at. Must contain the columns \code{gradient}, \code{unit} & \code{measurement_error_sd} whose column names match the below \code{gradient} & \code{unit} arguments.
+#' @param gradient String. Name of the gradient variable in \code{newdata}.
+#' @param unit String. Name of the unit variable in \code{newdata}.
+#' @param resp String. Name of the response variable in \code{model}.
+#' @param ndraws Numeric. Number of draws to take from \code{model}.
+#' @param type String. Single string of either \code{"link"} or \code{"response"}. This alters at what point the first derivatives (and hence response diveristy) is calculated.
+#' @param raw Boolean. If \code{FALSE}, returns summaries of each object, whereas \code{TRUE} returns estimates of all \code{ndraws}.
+#' @param width Numeric. If \code{raw == FALSE}, defines the credible interval % for the summarised draws.
+#' 
+#' @returns A list containing five objects:
+#' \item{derivs}{dataframe containing the first derivatives at each \code{newdata}}
+#' \item{epreds}{dataframe containing the expected response variable at each \code{newdata$unit}}
+#' \item{dissim}{dataframe containing the response dissimilarity across all \code{newdata$unit} at each \code{newdata$gradient}}
+#' \item{diverg}{dataframe containing the response divergence across all \code{newdata$unit} at each \code{newdata$gradient}}
+#' \item{imbalance}{dataframe containing the response imbalance across all \code{newdata$unit} at each \code{newdata$gradient}}
+#'
+#' @source Ross S.-J., Petchey O.L., Sasaki T., & Armitage D.W. (2023). How to measure response diversity. Methods in Ecology and Evolution, 14, 1150–1167.
+#' @source Polazzo F., Hämmig T., Petchey O.L., & Pennekamp F. (2025). The imbalance of nature: the role of species environmental responses for community stability. Ecology Letters 28, no. 10: e70224.
+
 respDivme <- function(model, newdata, gradient = c("sst"), unit = "bird1", error = "DEEkJ_sd", resp = c("weight"), ndraws = 1000, type = c("link","response"), raw = FALSE, width = 0.95){
   
   epreds <- tidybayes::add_epred_draws(model, newdata = newdata,
