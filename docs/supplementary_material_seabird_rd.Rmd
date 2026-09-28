@@ -172,7 +172,7 @@ where $w$ is the site’s weight, $x$ is the site’s population size summed acr
 
 Puffin daily energetic expenditure (DEE) was estimated from equations parameterised by Brünnich’s guillemot activity-specific cost estimates (Buckingham et al., 2025; Croll et al., 1992; Elliott et al., 2013; Elliott & Gaston, 2014; Gabrielsen et al., 1988; Patterson et al., 2022). As these Brünnich’s guillemot costs ($x$) are reported in kJ, we converted them to puffin appropriate costs assuming the following allometric scaling (Shaffer 2011):
 
-$$ puffin \ kgJ = \frac{x \ kJ}{\left(x \ \overline{g}\right)^{0.689}} \cdot {\left(puffin  \ \overline{g}\right)^{0.689}}$$
+$$ puffin \ kJ \ g^{-1} = \frac{x \ kJ}{\left(x \ \overline{g}\right)^{0.689}} \cdot {\left(puffin  \ \overline{g}\right)^{0.689}}$$
 $$x \ \overline{g} = 803$$
 $$puffin \ \overline{g} = 395$$
 where mean Brünnich’s guillemot mass in grams $x (\overline{g})$ is reported in Croll & McLaren (1993), and mean puffin mass is calculated from all puffins captured during this study. 
@@ -180,12 +180,12 @@ where mean Brünnich’s guillemot mass in grams $x (\overline{g})$ is reported 
 Lower critical temperature in water (LCT~water~), representing the additional cost of activity incurred in water due to thermoregulation, was derived from experimental estimates of LCT~water~ in Brünnich’s guillemots (14.18°C - Croll & McLaren 1993; Buckingham et al. 2025). Lower critical temperature in air (LCT~air~) was then derived from Ellis & Gabrielsen (2002 - 5.72°C), assuming a breeding latitude of 78.2°.
 
 Daily energetic expenditure was then estimated from the activity budgets using the following equations:
-$$\begin{multline*}DEE = 4.35 \cdot T_{flight} + (1.18 - 0.03 \cdot SST) \cdot T_{forage} + \left(\frac{0.29}{0.31} - 0.005 \cdot TAS\right) \cdot T_{restland} + \\ (0.72 - 0.03 \cdot SST) \cdot T_{restwater} \quad if \left(\ SST \leq LCT_{water} \land TAS \leq LCT_{air}\right)
+$$\begin{multline*}DEE \ kJ \ g^{-1} = 4.35 \cdot T_{flight} + (1.18 - 0.03 \cdot SST) \cdot T_{forage} + \left(0.31 - 0.005 \cdot TAS\right) \cdot T_{restland} + \\ (0.72 - 0.03 \cdot SST) \cdot T_{restwater} \quad if \left(\ SST \leq LCT_{water} \land TAS \leq LCT_{air}\right)
 \end{multline*}$$
 $$\begin{multline*}
-DEE = 4.35 \cdot T_{flight} + 0.79 \cdot T_{forage} + 0.28 \cdot T_{restland} + \\ 0.28 \cdot T_{restwater} \quad if \left(\ SST > LCT_{water} \land TAS > LCT_{air}\right)
+DEE \ kJ \ g^{-1} = 4.35 \cdot T_{flight} + 0.79 \cdot T_{forage} + 0.28 \cdot T_{restland} + \\ 0.28 \cdot T_{restwater} \quad if \left(\ SST > LCT_{water} \land TAS > LCT_{air}\right)
 \end{multline*}$$
-where $T_{activity}$ is hours spent in each activity.
+where $T_{activity}$ is hours spent in each activity, $SST$ is sea surface temperature (°C) and $TAS$ is air temperature (°C), assuming that 'foraging' is equivalent to 'active' in Frankish et al. (2026).
 
 ### \textit{Rissa tridactyla} daily energetic expenditure (Frankish et al. 2026)
 
@@ -193,7 +193,7 @@ Kittiwake daily energetic expenditure (DEE) was estimated using a combination of
 
 All activity cost estimates ($x$) were converted from mL O^2^ g^-1^ h^-1^ to kJ g^-1^ h^-1^ assuming a caloric conversion factor of 20.1 J mL^-1^ (Schmidt-Nielsen 1997), and rescaled allometrically (Shaffer 2011):
 
-$$ kittiwake \ kgJ = \frac{x \ kJ}{\left(x \ \overline{g}\right)^{0.717}} \cdot {\left(kittiwake \ \overline{g}\right)^{0.717}}$$
+$$ kittiwake \ kJ \ g^{-1} = \frac{x \ kJ}{\left(x \ \overline{g}\right)^{0.717}} \cdot {\left(kittiwake \ \overline{g}\right)^{0.717}}$$
 $$x \ \overline{g} = 365 \quad if \ Gabrielsen \ et \ al. \ (1998)$$
 $$x \ \overline{g} = 450 \quad if \ Tremblay \ et \ al. \ (2024)$$
 $$kittiwake \ \overline{g} = 392$$
@@ -203,10 +203,10 @@ Lower critical temperature's were revised from Gabrielsen et al. (1988)'s Schola
 Daily energetic expenditure was then estimated from the activity budgets using the following equations:
 
 $$\begin{multline*}
-DEE = 0.91 \cdot T_{flight} + 0.70 \cdot T_{forage} + (0.16 - 0.005 \cdot TAS) \cdot T_{restland} + \\ (0.54 - 0.01 \cdot SST) \cdot T_{restwater} \quad if \left(\ SST \leq LCT_{water} \land TAS \leq LCT_{air}\right)
+DEE \ kJ \ g^{-1} = 0.91 \cdot T_{flight} + 0.70 \cdot T_{forage} + (0.16 - 0.005 \cdot TAS) \cdot T_{restland} + \\ (0.54 - 0.01 \cdot SST) \cdot T_{restwater} \quad if \left(\ SST \leq LCT_{water} \land TAS \leq LCT_{air}\right)
 \end{multline*}$$
 $$\begin{multline*}
-DEE = 0.91 \cdot T_{flight} + 0.70 \cdot T_{forage} + 0.13 \cdot T_{restland} + \\ 0.39 \cdot T_{restwater} \ if \left(\ SST > LCT_{water} \land TAS > LCT_{air}\right)
+DEE \ kJ \ g^{-1} = 0.91 \cdot T_{flight} + 0.70 \cdot T_{forage} + 0.13 \cdot T_{restland} + \\ 0.39 \cdot T_{restwater} \ if \left(\ SST > LCT_{water} \land TAS > LCT_{air}\right)
 \end{multline*}$$
 where $T_{activity}$ is hours spent in each activity, $SST$ is sea surface temperature (°C) and $TAS$ is air temperature (°C).
 
@@ -214,7 +214,7 @@ where $T_{activity}$ is hours spent in each activity, $SST$ is sea surface tempe
 
 # S2: Supplementary figures
 
-```{r figS1,echo=FALSE, fig.width = 7.5, fig.height=5, fig.cap="Seabird colony locations and core area kernels.", fig.align='center'}
+```{r figS1,echo=FALSE, fig.width = 7.5, fig.height=5, fig.cap="Seabird colony locations (points) and core area kernels (black lined polygons).", fig.align='center'}
 my_wkt = 'PROJCS["Lambert_Azimuthal_Equal_Area",
  GEOGCS["GCS_WGS_1984",
   DATUM["D_WGS_1984",
@@ -263,17 +263,6 @@ spp_kernels <- read.csv("data/Behaviour/OutputDat_Kernel.csv") |>
 
 ggplot() +
   geom_sf(
-    data = spp_kernels |>
-      sf::st_as_sf(coords = c("long", "lat"), crs = my_wkt) |>
-      dplyr::summarise(geometry = sf::st_combine(geometry), .by = c(species, colony, season, piece)) |>
-      sf::st_cast("POLYGON"),
-    aes(group = interaction(colony, season, piece)), 
-    linewidth = 0.5,
-    fill = "grey20",
-    col = NA,
-    alpha = 0.2
-  ) +
-  geom_sf(
     data = ggplot2::map_data("world") |>
       sf::st_as_sf(coords = c("long", "lat"), crs = 4326) |>
       dplyr::summarise(geometry = sf::st_combine(geometry), .by = group) |>
@@ -300,6 +289,19 @@ ggplot() +
     stat = "sf_coordinates",
     min.segment.length = 0,
     label.size=NA, fill = NA
+  ) +
+   geom_sf(
+    data = spp_kernels |>
+      sf::st_as_sf(coords = c("long", "lat"), crs = my_wkt) |>
+      dplyr::summarise(geometry = sf::st_combine(geometry), .by = c(species, colony, season, piece)) |>
+      sf::st_cast("POLYGON"),
+    aes(group = interaction(colony, season, piece)), 
+    linewidth = 0.5,
+    fill = NA,
+    #fill = "grey20",
+    col = "grey20",
+    #col = NA,
+    alpha = 1
   ) +
   facet_wrap(~ species, nrow = 2,strip.position = "right") +
   #coord_sf(xlim = c(-1800000, 900000), ylim = c(-1000000, 1000000)) +  # for fixing the limits of the map
@@ -385,33 +387,33 @@ plot_data <- abundances |>
 
 \newpage
 
-```{r puffin_decision_tree, fig.cap="Behavioural decision tree for assigning 10-minute bouts of immersion and light data in \\textit{Fratercula arctica} (Atlantic puffin).", fig.align='center', out.width= "100%"}
+```{r puffin_decision_tree, fig.cap="Behavioural decision tree for assigning 10-minute bouts of immersion and light data in \\textit{Fratercula arctica} (Atlantic puffin). Data sources: \\text{*} Fayet et al. 2016, \\text{†} Frankish et al. 2026.", fig.align='center', out.width= "100%"}
 DiagrammeR::grViz("
 digraph causal {
 
 	  # Nodes
 	  node [shape = plaintext]
-	  A [label = 'How wet is the logger?']
-	  A1 [label = 'Wet (W >= 0.98)']
+	  A [label = 'How wet is the logger? *']
+	  A1 [label = 'Wet (W >= 0.98) *']
 	  a1 [label = 'Resting on water', fontcolor = '#96C4D0']
-	  A2 [label = 'Intermediate (0.02 < W < 0.98)']
-	  A3 [label = 'Dry (W < 0.02)']
+	  A2 [label = 'Intermediate (0.02 < W < 0.98) *']
+	  A3 [label = 'Dry (W < 0.02) *']
 
-    B [label = 'Is it light (L)?']
-    B1 [label = 'Yes (L > 0.0)']
+    B [label = 'Is it light (L) *?']
+    B1 [label = 'Yes (L > 0.0) *']
     b1 [label = 'Foraging', fontcolor = '#96C4D0']
-	  B2 [label = 'No (L = 0.0)']
+	  B2 [label = 'No (L = 0.0) †']
 	  b2 [label = 'Resting on water', fontcolor = '#96C4D0']
 	  
-	  C [label = 'Is it consistently light?']
-    C1 [label = 'Yes']
-	  C2 [label = 'No (is night or in burrow)']
+	  C [label = 'Is it consistently light? *']
+    C1 [label = 'Yes *']
+	  C2 [label = 'No (is night or in burrow) *']
 	  c2 [label = 'Resting on land', fontcolor = '#96C4D0']
 	  
-	  D [label = 'Does bout length exceed 90 minutes?']
-    D1 [label = 'Yes']
+	  D [label = 'Does bout length exceed 90 minutes? †']
+    D1 [label = 'Yes †']
     d1 [label = 'Resting on land', fontcolor = '#96C4D0']
-	  D2 [label = 'No']
+	  D2 [label = 'No †']
 	  d2 [label = 'In-flight', fontcolor = '#96C4D0']
 	  
 	  # Edges
@@ -436,7 +438,7 @@ digraph causal {
     C -> C2
     C2 -> c2
     
-    C2 -> D
+    C1 -> D
     D -> D1
     D1 -> d1
     D -> D2
@@ -454,23 +456,23 @@ digraph causal {
 
 \newpage
 
-```{r kittiwake_decision_tree, fig.cap="Behavioural decision tree for assigning 10-minute bouts of immersion and light data in \\textit{Rissa tridactyla} (black-legged kittiwake).", fig.align='center', out.width= "100%"}
+```{r kittiwake_decision_tree, fig.cap="Behavioural decision tree for assigning 10-minute bouts of immersion and light data in \\textit{Rissa tridactyla} (black-legged kittiwake). Data sources: \\text{*} Christensen-Dalsgaard et al. 2018, \\text{†} Frankish et al. 2026.", fig.align='center', out.width= "100%"}
 DiagrammeR::grViz("
 digraph causal {
 
 	  # Nodes
 	  node [shape = plaintext]
-	  A [label = 'How wet (W) is the logger?']
-	  A1 [label = 'Wet (W = 1.0)']
+	  A [label = 'How wet (W) is the logger? *']
+	  A1 [label = 'Wet (W = 1.0) *']
 	  a1 [label = 'Resting on water', fontcolor = '#96C4D0']
-	  A2 [label = 'Intermediate (0.0 < W < 1.0)']
+	  A2 [label = 'Intermediate (0.0 < W < 1.0) *']
 	  a2 [label = 'Foraging', fontcolor = '#96C4D0']
-	  A3 [label = 'Dry (W = 0.0)']
+	  A3 [label = 'Dry (W = 0.0) *']
 
-	  B [label = 'Does bout length exceed 240 minutes?']
-    B1 [label = 'Yes']
+	  B [label = 'Does bout length exceed 240 minutes? †']
+    B1 [label = 'Yes †']
     b1 [label = 'Resting on land', fontcolor = '#96C4D0']
-	  B2 [label = 'No']
+	  B2 [label = 'No †']
 	  b2 [label = 'In-flight', fontcolor = '#96C4D0']
 	  
 	  # Edges
@@ -633,7 +635,7 @@ e1_behav <- ggplot(behav_epred |>
   geom_line() +
     scale_fill_manual(values = c("#5F4E6B","#B7EB86","#87CEEB","#EBE586","#EB8699","#5C6B4E","#969586","#4E636B"), breaks = c("Ålesund","Anda", "Hjelmsøya", "Hornøya", "Røst", "Runde","Bjørnøya", "Sør-Gjæslingan")) +
   facet_grid(species~colony) +
-  ylab("Expectated foraging effort") + xlab("Sea surface temperature (°C)") +
+  ylab("Expected foraging effort") + xlab("Sea surface temperature (°C)") +
   guides(color = "none", fill = "none") +
   theme_classic() +
   theme(
@@ -663,7 +665,7 @@ e2_behav <- ggplot(behav_epred |>
   geom_line() +
     scale_fill_manual(values = c("#5F4E6B","#B7EB86","#87CEEB","#EBE586","#EB8699","#5C6B4E","#969586","#4E636B"), breaks = c("Ålesund","Anda", "Hjelmsøya", "Hornøya", "Røst", "Runde","Bjørnøya", "Sør-Gjæslingan")) +
   facet_grid(species~colony) +
-  ylab("Expectated foraging effort") + xlab("Sea surface temperature (°C)") +
+  ylab("Expected foraging effort") + xlab("Sea surface temperature (°C)") +
   guides(color = "none", fill = "none") +
   theme_classic() +
   theme(
