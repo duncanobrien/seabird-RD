@@ -351,6 +351,7 @@ plot_data <- abundances |>
 (ggplot(plot_data |>
          subset(species == "Fratercula arctica"),
   aes(x = year, y = tot_count)) +
+    geom_line() +
   geom_point() +
     ylab("Population size\n(breeding pairs)") +
     xlab("Year") +
@@ -358,6 +359,7 @@ plot_data <- abundances |>
   (ggplot(plot_data |>
          subset(species == "Rissa tridactyla"),
   aes(x = year, y = tot_count)) +
+    geom_line() +
   geom_point() +
      ylab("Population size\n(breeding pairs)") +
     xlab("Year") +

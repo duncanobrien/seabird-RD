@@ -20,7 +20,11 @@
 
 9.  [*I_population_RD_stability_energy.R*](I_population_RD_stability_energy.R) - from the [cleaned](G_clean_data.R) data, fit energetic expenditure reaction norms via generalised additive models (GAM) and estimate response diversity from GAM derived first derivatives.
 
-10.  [*J_stability_rd_spp.R*](J_stability_rd_spp.R) - correlate the stability of each species' colony with its response diversity estimate from the GAMs fit by [*H_population_RD_stability_behaviour.R*](H_population_RD_stability_behaviour.R) and [*I_population_RD_stability_energy.R*](I_population_RD_stability_energy.R). 
+10.  [*J_figure2.R*](J_figure2.R) - generate figure2.png. 
+
+11.  [*K_stability_rd_spp.R*](K_stability_rd_spp.R) - correlate the stability of each species' colony with its response diversity estimate from the GAMs fit by [*H_population_RD_stability_behaviour.R*](H_population_RD_stability_behaviour.R) and [*I_population_RD_stability_energy.R*](I_population_RD_stability_energy.R). 
+
+12.  [*L_figure3.R*](L_figure3.R) - generate figure3.png.
 
 ## Supporting functions
 
