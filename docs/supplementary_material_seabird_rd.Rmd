@@ -364,7 +364,7 @@ plot_data <- abundances |>
   aes(x = year, y = tot_count)) +
     geom_line() +
   geom_point() +
-    ylab("Population size\n(breeding pairs)") +
+    ylab("Apparently occupied burrows") +
     xlab("Year") +
   facet_wrap( ~ colony, scales = "free", nrow = 1)) /
   (ggplot(plot_data |>
@@ -372,7 +372,7 @@ plot_data <- abundances |>
   aes(x = year, y = tot_count)) +
     geom_line() +
   geom_point() +
-     ylab("Population size\n(breeding pairs)") +
+     ylab("PApparently occupied nests") +
     xlab("Year") +
   facet_wrap( ~ colony, scales = "free", nrow = 1)) &
   theme_classic() &
