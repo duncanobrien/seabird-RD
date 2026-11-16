@@ -12,7 +12,7 @@ loop_grid <- expand.grid("month" = 3:9,
 ##########################################################################################
 
 sst_requests <- lapply(c(1:NROW(loop_grid)),function(i){
-  yr = loop_grid_sst$year[i]
+  yr = loop_grid$year[i]
   month = ifelse(nchar(loop_grid$month[i]) >1,paste0(loop_grid$month[i]),paste0("0",loop_grid$month[i]))  
   list(
     dataset_short_name = "derived-era5-single-levels-daily-statistics",

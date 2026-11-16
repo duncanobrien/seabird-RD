@@ -67,7 +67,7 @@ p1 <- ggplot(behav_derivs |>
   geom_line(aes(col = colony,group = interaction(bird1,drawid)),alpha = 0.2) +
   geom_line(aes(y = median, group = bird1), colour = "black") +
   facet_wrap(~colony) +
-  ylab("Partial foraging effort\nfirst derivative") + xlab("Sea surface temperature (°C)") +
+  ylab("First foraging effort\npartial derivative") + xlab("Sea surface temperature (°C)") +
   guides(color = "none", fill = "none") +
   scale_color_manual(values = c("#5F4E6B","#B7EB86","#87CEEB","#EBE586","#EB8699","#5C6B4E","#969586","#4E636B"), breaks = c("Ålesund","Anda", "Hjelmsøya", "Hornøya", "Røst", "Runde","Bjørnøya", "Sør-Gjæslingan")) +  theme_classic() +
   theme_classic(base_size = 10) +
@@ -85,7 +85,7 @@ p1 <- ggplot(behav_derivs |>
   geom_line(aes(col = colony,group = interaction(bird1,drawid)),alpha = 0.1, linewidth = 0.5) +
   geom_line(aes(y = median, group = bird1), colour = "black", linewidth = 0.5) +
   facet_wrap(~colony) +
-  ylab("Partial foraging effort\nfirst derivative") + xlab("Sea surface temperature (°C)") +
+  ylab("First foraging effort\npartial derivative") + xlab("Sea surface temperature (°C)") +
   guides(color = "none", fill = "none") +
   scale_color_manual(values = c("#5F4E6B","#B7EB86","#87CEEB","#EBE586","#EB8699","#5C6B4E","#969586","#4E636B"), breaks = c("Ålesund","Anda", "Hjelmsøya", "Hornøya", "Røst", "Runde","Bjørnøya", "Sør-Gjæslingan")) +  theme_classic() +
   theme_classic(base_size = 10) +
@@ -105,7 +105,7 @@ p2 <- ggplot(dee_derivs |>
   geom_line(aes(col = colony,group = interaction(bird1,drawid)),alpha = 0.2) +
   geom_line(aes(y = median, group = bird1), colour = "black") +
   facet_wrap(~colony) +
-  ylab("Partial energy expenditure\nfirst derivative") + xlab("Sea surface temperature (°C)") +
+  ylab("First energy expenditure\npartial derivative") + xlab("Sea surface temperature (°C)") +
   coord_cartesian(ylim = c(-1,1)) +
   guides(color = "none", fill = "none") +
   scale_color_manual(values = c("#5F4E6B","#B7EB86","#87CEEB","#EBE586","#EB8699","#5C6B4E","#969586","#4E636B"), breaks = c("Ålesund","Anda", "Hjelmsøya", "Hornøya", "Røst", "Runde","Bjørnøya", "Sør-Gjæslingan")) +  theme_classic() +
@@ -124,7 +124,7 @@ p2 <- ggplot(dee_derivs |>
   geom_line(aes(col = colony,group = interaction(bird1,drawid)),alpha = 0.1, linewidth = 0.5) +
   geom_line(aes(y = median, group = bird1), colour = "black", linewidth = 0.5) +
   facet_wrap(~colony) +
-  ylab("Partial energy expenditure\nfirst derivative") + xlab("Sea surface temperature (°C)") +
+  ylab("First energy expenditure\npartial derivative") + xlab("Sea surface temperature (°C)") +
   coord_cartesian(ylim = c(-1,1)) +
   guides(color = "none", fill = "none") +
   scale_color_manual(values = c("#5F4E6B","#B7EB86","#87CEEB","#EBE586","#EB8699","#5C6B4E","#969586","#4E636B"), breaks = c("Ålesund","Anda", "Hjelmsøya", "Hornøya", "Røst", "Runde","Bjørnøya", "Sør-Gjæslingan")) +  theme_classic() +

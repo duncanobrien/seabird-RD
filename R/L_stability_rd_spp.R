@@ -12,7 +12,7 @@ library(patchwork)
 
 set.seed(333)
 
-source("R/G_clean_data.R")
+source("R/H_clean_data.R")
 source("R/utilities/respDIV.R")
 source("R/utilities/respDIVme.R")
 
@@ -49,11 +49,13 @@ RD_data_energy <- energetics |>
   dplyr::mutate(pop_id = paste(species,colony,sep = "_")) |>
   dplyr::rename(sst = mean_sst) #must rename to not interfere with marginaleffects internal naming conventions
 
-RD_data_abun <- dplyr::left_join(abundances,
+RD_data_abun <- dplyr::left_join(abundances |>
+                                   dplyr::select(species,colony,year,tot_count),
                                  sst_yr |>
                                    subset(season == "breeding"), by = c("species","colony","year")) |>
   dplyr::rename(sst = mean_sst) |>
-  dplyr::mutate(std_count = tot_count/nsites) |>
+  #dplyr::mutate(tot_count = log10(tot_count)) |>
+  #dplyr::mutate(std_count = tot_count/nsites) |>
   dplyr::left_join(RD_data_behav |>
                      dplyr::select(species, colony, year, year1) |>
                      dplyr::distinct(),by = c("species","colony", "year"))
@@ -92,7 +94,7 @@ mod_blki_behav <- lapply(grep("blki_behav",model_files, value = TRUE),readRDS) |
   lapply(X = _,`[[`,"model")
 
 behav_stability_blki <- lapply(seq_along(mod_blki_behav),function(x){
-  
+
   abun_data <- RD_data_abun |>
     subset(colony == unique(RD_behav_blki[[x]]$colony) & species == unique(RD_behav_blki[[x]]$species)) |>
     dplyr::rename(sst_raw = sst) |>
@@ -109,8 +111,8 @@ behav_stability_blki <- lapply(seq_along(mod_blki_behav),function(x){
   detrend_abun <- resid(lm(abun_data$tot_count ~ abun_data$year))
   
   list("summary" = data.frame(
-    "dev" = EWSmethods::uniJI(abun_data[, c("year", "tot_count")], winsize = 100, scale = FALSE)$smap_J,
-    "dev_detrend" = EWSmethods::uniJI(cbind(abun_data$year,detrend_abun), winsize = 100, scale = FALSE)$smap_J,
+    "dev" = EWSmethods::uniJI(abun_data[, c("year", "tot_count")], winsize = 100, scale = TRUE)$smap_J,
+    "dev_detrend" = EWSmethods::uniJI(cbind(abun_data$year,detrend_abun), winsize = 100, scale = TRUE)$smap_J,
     "ts" = mean(abun_data$tot_count) / sd(abun_data$tot_count),
     "ts_detrend" = mean(abun_data$tot_count) / sd(detrend_abun),
     "median_dissim" = median(rd_blki_behav_yr$dissim$.dissimilarity),
@@ -151,16 +153,10 @@ behav_stability_atpu <- lapply(seq_along(mod_atpu_behav),function(x){
   detrend_abun <- resid(lm(abun_data$tot_count ~ abun_data$year))
   
   list("summary" = data.frame(
-    "dev" = EWSmethods::uniJI(abun_data[, c("year", "tot_count")], winsize = 100, scale = FALSE)$smap_J,
-    "dev_detrend" = EWSmethods::uniJI(cbind(abun_data$year,detrend_abun), winsize = 100, scale = FALSE)$smap_J,
-    "ar" = EWSmethods::uniAR(abun_data[, c("year", "tot_count")], winsize = 100, scale = FALSE)$uniAR,
-    "dev_log" = EWSmethods::uniJI(abun_data[, c("year", "tot_count")] |>
-                                    dplyr::mutate(tot_count = log1p(tot_count)), winsize = 100, scale = TRUE)$smap_J,
-    "ar_log" = EWSmethods::uniAR(abun_data[, c("year", "tot_count")]  |>
-                                   dplyr::mutate(tot_count = log1p(tot_count)), winsize = 100, scale = TRUE)$uniAR,
+    "dev" = EWSmethods::uniJI(abun_data[, c("year", "tot_count")], winsize = 100, scale = TRUE)$smap_J,
+    "dev_detrend" = EWSmethods::uniJI(cbind(abun_data$year,detrend_abun), winsize = 100, scale = TRUE)$smap_J,
     "ts" = mean(abun_data$tot_count) / sd(abun_data$tot_count),
     "ts_detrend" = mean(abun_data$tot_count) / sd(detrend_abun),
-    "ts_log" = mean(log1p(abun_data$tot_count)) / sd(log1p(abun_data$tot_count)),
     "median_dissim" = median(rd_atpu_behav_yr$dissim$.dissimilarity),
     "median_diverg" = median(rd_atpu_behav_yr$diverg$.divergence),
     "median_imbalance" = median(rd_atpu_behav_yr$imbalance$.imbalance),
@@ -244,7 +240,6 @@ dee_stability_blki <- lapply(seq_along(mod_blki_dee),function(x){
   list("summary" = data.frame(
     "dev" = EWSmethods::uniJI(abun_data[, c("year", "tot_count")], winsize = 100, scale = FALSE)$smap_J,
     "dev_detrend" = EWSmethods::uniJI(cbind(abun_data$year,detrend_abun), winsize = 100, scale = FALSE)$smap_J,
-    "ar" = EWSmethods::uniAR(abun_data[, c("year", "tot_count")], winsize = 100, scale = FALSE)$uniAR,
     "ts" = mean(abun_data$tot_count) / sd(abun_data$tot_count),
     "ts_detrend" = mean(abun_data$tot_count) / sd(detrend_abun),
     "median_dissim" = median(rd_blki_dee_yr$dissim$.dissimilarity),

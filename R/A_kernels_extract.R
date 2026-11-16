@@ -164,7 +164,7 @@ kernels <- do.call("rbind", lapply(list(AtPu_locs,BlKi_locs), function(x) {
 
   kerneldata <- adehabitatHR::kernelUD(coords, h = 'href', grid = 1000, extent = 1.0) #apply utilization distribution kernel estimator
 
-  kd <- adehabitatHR::getverticeshr(kerneldata, 95) |> #50% quantiles following defintion of 'core area'
+  kd <- adehabitatHR::getverticeshr(kerneldata, 50) |> #50% quantiles following defintion of 'core area'
     ggplot2::fortify() |>
     dplyr::mutate(
       species = unique(x$species)) |>

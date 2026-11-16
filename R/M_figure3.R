@@ -181,4 +181,4 @@ p1 <- ggplot(
   )  &
   plot_annotation(tag_levels = "A")
 
-ggsave("outputs/figure3_spp_cor.png", p1, dpi = 300, width = 6, height = 6)
+ggsave("outputs/figure3.png", p1, dpi = 300, width = 6, height = 6)

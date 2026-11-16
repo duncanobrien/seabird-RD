@@ -1,5 +1,5 @@
 ---
-title: "Response diversity of individual seabirds correlates positively with colony stability"
+title: "Response diversity of individual seabirds can correlate positively with colony stability"
 author: 
   - Duncan A. O’Brien$^{1}$
   - Caitlin Frankish$^{2}$
@@ -10,9 +10,7 @@ author:
   - Tycho Anker-Nilssen$^{6}$
   - Manuel Ballesteros$^{7}$
   - Ingar S. Bringsvor$^{8}$
-  - Signe Christensen-Dalsgaard$^{6}$
   - Nina Dehnhard$^{6}$
-  - Sébastien Descamps$^{9}$
   - Kjell Einar Erikstad$^{7}$
   - Svein-Håkon Lorentsen$^{6}$
   - Tone Kristin Reiertsen$^{7}$
@@ -68,7 +66,7 @@ library(flextable)
 
 set.seed(333)
 
-source("R/G_clean_data.R")
+source("R/H_clean_data.R")
 
 model_files <- fs::dir_ls(path = "outputs/models", glob = "*.RDS") #list all data files
 
@@ -159,14 +157,27 @@ lapply(function(X) dplyr::reframe(X, .dissimilarity = mean(.dissimilarity), .by 
 
 # S1: Supplementary methods
 
+### Estimating population abundance using TRIM (TRends and Indices for Monitoring data - Pannekoek and van Strien 2005)
+
+SEAPOP surveys static sampling plots at each seabird colony for the number of apparently occupied burrows (puffins) or apparently occupied nests (kittiwakes). However, the number of plots sampled within a colony can vary by year due to logistical constraints. We therefore compensated for this varying sampling effort by interpolating each sampling plot that was unsampled in certain years using the generalised TRIM model (Barett et al. 2006, Knape 2016): 
+
+$$Var(y_{i,t}) = \theta \mu_{i,t}
+$$
+$$\mu_{i,t} = \beta_{0} +\beta_{year[t]} + \beta_{plot[i]}
+$$
+
+where $y$ is each plot's ($i$) count in a given year ($t$), for a given mean ($\mu$) and dispersion ($theta$). Specifically, we fit a global intercept ($\beta_{0}$) with year and plot varying fixed effects ($\beta_{year}$,$\beta_{plot}$). 
+
+We then predicted expected counts for the missing plots, summing counts across all measured and interpolated plots in a given year to provide an estimate of total apparently occupied burrows/nest per year and colony. Only four colonies required interpolation: Hjelmsøya and Hornøya puffins and Hornøya and Røst kittiwakes.
+
 ### Røst \textit{Rissa tridactyla} abundance
 
 Røst kittiwakes required additional data processing as colony-level population size was measured across two sites (Vedøy and Harbour) which display different trends and consequently different insights into the fate of this colony (i.e. Vedøy supported a large population which declined over 40 years to extinction in 2020, whereas Harbour is a much smaller colony that emerged in 1980, grew, and now is in decline - Anker-Nilssen et al. 2023). While maximum apparently occupied nests were similar between the two sites, Vedøy counts represented 2% sampling effort (estimated from a true versus sampling plot count comparison made in 1988) whereas it was 100% at Harbour. We therefore estimated Røst kittiwake population size as the weighted average between the two sites using the following equation:
-$$x_{r\text{ø}st} = \frac{w_{ved\text{ø}y} \cdot x_{ved\text{ø}y} + w_{harbour} \cdot x_{harbour}}{w_{ved\text{ø}y} + w_{harbour}}$$
+$$y_{r\text{ø}st} = \frac{w_{ved\text{ø}y} \cdot y_{ved\text{ø}y} + w_{harbour} \cdot y_{harbour}}{w_{ved\text{ø}y} + w_{harbour}}$$
 $$w_{ved\text{ø}y} = \frac{\Lambda \cdot nplots_{ved\text{ø}y}}{\Lambda \cdot nplots_{ved\text{ø}y} + nplots_{harbour}}$$
 $$w_{harbour} = \frac{nplots_{harbour}}{\Lambda \cdot nplots_{ved\text{ø}y} + nplots_{harbour}}$$
-$$\Lambda = \frac{x_{true}}{x_{sample}}$$
-where $w$ is the site’s weight, $x$ is the site’s population size summed across all sampling plots, $nplots$ is the number of sampling plots at the site, and $\Lambda$ is the ratio of true kittiwake count to total sample plot count on Vedøy in 1988. 
+$$\Lambda = \frac{y_{true}}{y_{sample}}$$
+where $w$ is the site’s weight, $y$ is the site’s population size summed across all sampling plots, $nplots$ is the number of sampling plots at the site, and $\Lambda$ is the ratio of true kittiwake count to total sample plot count on Vedøy in 1988. 
 
 ### \textit{Fractercula artica} daily energetic expenditure (Frankish et al. 2026)
 
@@ -1168,6 +1179,8 @@ flextable::flextable() |>
 
 Anker-Nilssen, T., Fayet, A. L., & Aarvak, T. (2023). Top-down control of a marine mesopredator: Increase in native white-tailed eagles accelerates the extinction of an endangered seabird population. Journal of Applied Ecology, 60, 445–452. https://doi.org/10.1111/1365-2664.14343
 
+Barrett R, Lorentsen S-H, S.-H, Anker-Nilssen T. (2006). The status of breeding seabirds in mainland Norway. Atlantic Seabirds 8, 97–126. 
+
 Buckingham, L., Bogdanova, M. I., Daunt, F., Furness, R. W., Bennett, S., Dunn, R. E., Jardine, D. C., Newell, M. A., Weston, E. D., & Green, J. A. (2025). An improved method to derive behavioural budgets and energetics from geolocator data in Common Guillemots Uria aalge. Seabird Journal, (37). https://doi.org/10.61350/sbj.37.6 
 
 Croll, D. A., Gaston, A. J., Burger, A. E., & Konnoff, D. (1992). Foraging behavior and physiological adaptation for diving in thick-billed murres. Ecology, 73(1), 344–356. https://doi.org/10.2307/1938746 
@@ -1178,9 +1191,15 @@ Elliott, K. H., & Gaston, A. J. (2014). Dive behaviour and daily energy expendit
 
 Elliott, K. H., Ricklefs, R. E., Gaston, A. J., Hatch, S. A., Speakman, J. R., & Davoren, G. K. (2013). High flight costs, but low dive costs, in auks support the biomechanical hypothesis for flightlessness in penguins. Proceedings of the National Academy of Sciences, 110(23), 9380–9384. https://doi.org/10.1073/pnas.1304838110 
 
+Frankish, C. K., Buckingham, L., Bråthen, V. S., Descamps, S., Fauchald, P., Johansen, M. K., Moe, B., Neumann, S., Tarroux, A., Strøm, H., Åström, J., Anker- Nilssen, T., Barrett, R. T., Bogdanova, M. I., Bolton, M., Boulinier, T., Bringsvor, I. S., Chardine, J. W., Chastel, O., … Merkel, B. (2026). From stable high costs to variable low costs: A continuum of non- breeding energy expenditure strategies in North Atlantic seabirds. Journal of Animal Ecology, 00, 1–27. https://doi.org/10.1111/1365-2656.70379
+
 Gabrielsen, G. W., Mehlum, F., & Karlsen, H. E. (1988). Thermoregulation in four species of arctic seabirds. Journal of Comparative Physiology B, 157(6), 703–708. https://doi.org/10.1007/BF00691000 
 
 Humphreys, E. M., Wanless, S., & Bryant, D. M. (2007). Elevated metabolic costs while resting on water in a surface feeder: The Black-legged Kittiwake Rissa tridactyla. Ibis, 149, 106–111. 
+
+Knape J. (2016). Decomposing trends in Swedish bird populations using generalized additive mixed models. Journal of Applied Ecology 53, 1852–1861. https://doi.org/10.1111/1365-2664.12720
+
+Pannekoek J, Van Strien A. (2005). TRIM 3 manual (TRends and Indices for Monitoring data). 
 
 Patterson, A., Gilchrist, H. G., Robertson, G. J., Hedd, A., Fifield, D. A., & Elliott, K. H. (2022). Behavioural flexibility in an Arctic seabird using two distinct marine habitats to survive the energetic constraints of winter. Movement Ecology, 10(1), 45. https://doi.org/10.1186/s40462-022-00344-3 
 
