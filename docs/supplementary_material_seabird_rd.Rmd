@@ -12,6 +12,7 @@ author:
   - Ingar S. Bringsvor$^{8}$
   - Nina Dehnhard$^{6}$
   - Kjell Einar Erikstad$^{7}$
+  - Christoffer H. Hilde$^{9}$
   - Svein-Håkon Lorentsen$^{6}$
   - Tone Kristin Reiertsen$^{7}$
   - Vegard Sandøy Bråthen$^{6}$,
@@ -29,7 +30,7 @@ date:
   - 6. Norwegian Institute for Nature Research (NINA), P.O. Box 5685 Torgarden, 7485 Trondheim, Norway\newline
   - 7. Norwegian Institute for Nature Research (NINA), FRAM Centre, 9296 Tromsø, Norway\newline
   - 8. BirdLife Møre og Romsdal, Sandshamn, Norway\newline
-  - 9 Norwegian Institute for Nature Research (NINA), 5006 Bergen, Norway\newline
+  - 9. Norwegian Institute for Nature Research (NINA), 5006 Bergen, Norway\newline
   - 10. Norwegian Institute for Nature, Oslo, Norway\newline 
   
 header-includes:

@@ -13,7 +13,7 @@ library(patchwork)
 
 set.seed(333)
 
-source("R/G_clean_data.R")
+source("R/H_clean_data.R")
 source("R/utilities/respDIV.R")
 
 ##########################################################################################
@@ -115,7 +115,7 @@ lapply(seq_along(RD_atpu),function(x){
 RD_blki <- RD_data_behav |>
   subset(species == "BlKi") |>
   subset(!colony %in% c("Isfjorden", "Hjelmsoya")) |>
-  subset(!bird1 %in% c("BlKi_Anda_NOS_6198759","BlKi_Anda_NOS_6198952", "BlKi_Hornoya_NOS_6222268", "BlKi_Sklinna_NOS_6211517")) |> #drop birds that have unexplained periods of zero foraging across all conditions
+  subset(!bird1 %in% c("BlKi_Anda_BlKi_62","BlKi_Anda_BlKi_370", "BlKi_Hornoya_BlKi_90", "BlKi_Sklinna_BlKi_556")) |> #drop birds that have unexplained periods of zero foraging across all conditions
   dplyr::mutate(mean_sst = mean(sst),
                 sd_sst = sd(sst),.by = colony) |>
   dplyr::filter(dplyr::row_number()==1,.by = c(date, bird1)) |>

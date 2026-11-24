@@ -399,10 +399,10 @@ AtPu_daily <- data.table::copy(AtPu_FlightBoutLengths_lastcheck3) %>%
       sunset, sunrise, units = "hours"
     )))
   )] %>%
-  .[order(date), .SD, by = c("colony", "individ_id")] 
+  .[order(date), .SD, by = c("colony", "individ_id")] %>%
+  subset(select = c("colony","individ_id","season","date","tDaylight","tForage","tRestWater","tLand","tFlight","tActive","tTotal"))
 
 saveRDS(AtPu_daily, "data/Behaviour/OutputDat_Behav_Energy_AtPu.RDS")
-saveRDS(AtPu_FlightBoutLengths_lastcheck3, "data/Behaviour/OutputDat_Behav_Energy_AtPu_raw.RDS")
 
 ##########################################################################################
 #### Process Kittiwake data ####
@@ -621,7 +621,7 @@ BlKi_daily <- data.table::copy(BlKi_FlightBoutLengths_final) %>%
       sunset, sunrise, units = "hours"
     )))
   )] %>%
-  .[order(date), .SD, by = c("colony", "individ_id")]
+  .[order(date), .SD, by = c("colony", "individ_id")]  %>%
+  subset(select = c("colony","individ_id","season","date","tDaylight","tForage","tRestWater","tLand","tFlight","tActive","tTotal"))
 
 saveRDS(BlKi_daily, "data/Behaviour/OutputDat_Behav_Energy_BlKi.RDS")
-saveRDS(BlKi_FlightBoutLengths_final, "data/Behaviour/OutputDat_Behav_Energy_BlKi_raw.RDS")
